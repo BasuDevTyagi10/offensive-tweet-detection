@@ -1,16 +1,13 @@
 # OFFENSIVE TWEET DETECTION WEB-APP
+
+## Table of Contents  
+[-> General Info](#general-info)\
+[-> Technologies](#technologies)\
+[-> Getting Started](#getting-started)\
+[-> Authors](#authors)
+
 ## General Info
 **Project Purpose :** work done for miniproject evaluation GEU Semester-4
-<!-- ## Table of Contents  
-[1. General Info](#generalinfo)  
-[2. Technologies](#technologies)  
-[3. Setup](#setup)
-<a name="generalinfo">
-### General Info</a>
-<a name="technologies"/>
-### Technologies
-<a name="setup"/>
-### Setup -->
 
 ### Project Directory :
 <b>&emsp;./model-training-&-testing :</b> contains the dataset csv files, jupyter notebook and pickle files. The jupyter notebook is used for Data Visualization, Data Cleaning and Model Training, Testing & Exporting (for using it in our Web-App)
