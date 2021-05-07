@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div class="container justify-center pt-4 pl-5">
+    <h2 class="fw-normal">Search Tweets on particular Topic.</h2>
+</div>
+<div class="container justify-center pt-4 p-5">
+    <form action="getTweetsAPI" method="POST">
+        <div class="mb-3">
+            <h6><label for="keyword" class="form-label">Enter Keyword :</label></h6>
+            <input type="text" class="form-control" name="keyword" id="keyword">
+            {% if errorMsg %}
+            <div id="errorMsg" class="fst-italic font-monospace fs-6 text-danger">
+                {{ errorMsg }}
+            </div>
+            {% endif %}
+            <h6><label for="count" class="form-label mt-4">Enter No. of Tweets :</label></h6>
+            <input type="text" class="form-control" name="count" id="count" placeholder="default is 100">
+        </div>
+        <button type="submit" class="btn btn-info mt-2 fw-bold">Get Tweets</button>
+    </form>
+</div>
+{% if results|length > 0 %}
+<div class="container">
+    <h3 class=" text-center mt-5">Tweets:</h3>
+    <table class="table" id='tweets'>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tweet</th>
+        </tr>
+        {% for i in range(results|length)%}
+        <tr>
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ results[i] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/checkTweet" type="button" class="btn btn-secondary my-4 fw-bold">Run ML Model on Fetched Tweets</a>
+    <button onclick="copyTable()" class="btn btn-black my-4">Copy Tweets to Clipboard</button>
+</div>
+<script>
+    function copyTable() {
+        /* Get the text field */
+        var table = document.getElementById("tweets");
+        var copyText = ""
+        for(var i=1;i<table.rows.length;i++){
+            text = table.rows[i].innerText;
+            text = text.substring(2);
+            copyText = copyText + text + "\n";
+        }
+        navigator.clipboard.writeText(copyText)
+        .then(() => {
+          alert('Text copied to clipboard : \n'+copyText);
+        })
+        .catch(err => {
+          alert('Error in copying text: ', err);
+        });
+      }
+</script>
+{% endif %}
+{% endblock %}
